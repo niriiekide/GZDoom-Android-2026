@@ -19,6 +19,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Clean org.gradle.java.home from gradle.properties
+        run: |
+          if [ -f gradle.properties ]; then
+            sed -i '/org.gradle.java.home/d' gradle.properties
+          fi
+
       - name: Setup Android SDK & NDK
         uses: android-actions/setup-android@v3
         with:
